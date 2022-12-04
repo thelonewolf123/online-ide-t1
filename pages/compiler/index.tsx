@@ -15,19 +15,17 @@ const Compiler: React.FC<{}> = () => {
                 template={'react'}
                 className={'h-[100%]'}
             >
-                <div className="flex flex-row h-[50%]">
+                <div className="flex flex-row h-[50vh]">
                     <Explorer></Explorer>
                     <SandpackCodeEditor
                         showLineNumbers={true}
                         closableTabs
                     ></SandpackCodeEditor>
                 </div>
-                <div>
-                    <SandpackPreview
-                        showNavigator
-                        className="h-[50%]"
-                    ></SandpackPreview>
-                </div>
+                <SandpackPreview
+                    showNavigator
+                    className="h-[50vh]"
+                ></SandpackPreview>
             </SandpackProvider>
         </div>
     )
