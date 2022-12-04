@@ -5,22 +5,29 @@ import {
     SandpackCodeEditor,
     SandpackPreview
 } from '@codesandbox/sandpack-react'
+import Explorer from './explorer'
 
 const Compiler: React.FC<{}> = () => {
     return (
-        <div>
-            <SandpackProvider theme={'dark'}>
-                <div className="flex flex-row h-[50vh]">
-                    <div className="w-[300px]">
-                        <SandpackFileExplorer></SandpackFileExplorer>
-                    </div>
+        <div className="h-[100vh]">
+            <SandpackProvider
+                theme={'dark'}
+                template={'react'}
+                className={'h-[100%]'}
+            >
+                <div className="flex flex-row h-[50%]">
+                    <Explorer></Explorer>
                     <SandpackCodeEditor
                         showLineNumbers={true}
                         closableTabs
                     ></SandpackCodeEditor>
                 </div>
-
-                <SandpackPreview showNavigator></SandpackPreview>
+                <div>
+                    <SandpackPreview
+                        showNavigator
+                        className="h-[50%]"
+                    ></SandpackPreview>
+                </div>
             </SandpackProvider>
         </div>
     )
