@@ -5,7 +5,7 @@ import {
     SandpackCodeEditor,
     SandpackPreview
 } from '@codesandbox/sandpack-react'
-import Explorer from './explorer'
+import Explorer from '../../components/explorer'
 
 const Compiler: React.FC<{}> = () => {
     return (
