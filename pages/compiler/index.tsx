@@ -7,7 +7,6 @@ import {
 import NoSSR from 'react-no-ssr'
 import { useState } from 'react'
 import Console from '../../components/console/console'
-import Editor from '../../components/editor'
 import Explorer from '../../components/explorer'
 
 const Compiler: React.FC<{}> = () => {
