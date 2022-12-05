@@ -4,8 +4,10 @@ import {
     SandpackPreview,
     ConsoleIcon
 } from '@codesandbox/sandpack-react'
+import NoSSR from 'react-no-ssr'
 import { useState } from 'react'
 import Console from '../../components/console/console'
+import Editor from '../../components/editor'
 import Explorer from '../../components/explorer'
 
 const Compiler: React.FC<{}> = () => {
@@ -21,11 +23,8 @@ const Compiler: React.FC<{}> = () => {
                 className={'h-[100%]'}
             >
                 <div className="flex flex-row h-[50vh]">
-                    <Explorer></Explorer>
-                    <SandpackCodeEditor
-                        showLineNumbers={true}
-                        closableTabs
-                    ></SandpackCodeEditor>
+                    <Explorer />
+                    <SandpackCodeEditor showTabs showLineNumbers closableTabs />
                 </div>
                 <div className="flex flex-row">
                     <SandpackPreview
