@@ -40,7 +40,7 @@ const Compiler: React.FC<{}> = () => {
                 </div>
             </SandpackProvider>
             <span
-                className="absolute bottom-0 right-0 bg-gray-600 text-white p-2 rounded-full hover:bg-gray-800 text-xl m-2 hover:cursor-pointer"
+                className="absolute bottom-0 right-0 bg-gray-700 text-white p-2 rounded-full hover:bg-gray-800 text-xl m-2 hover:cursor-pointer"
                 onClick={changeConsoleVisibility}
             >
                 <ConsoleIcon></ConsoleIcon>
