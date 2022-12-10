@@ -5,8 +5,6 @@ const Explorer: React.FC<{}> = () => {
         sandpack: { addFile, files }
     } = useSandpack()
 
-    console.log(files)
-
     return (
         <div className="w-[25%]">
             <SandpackFileExplorer></SandpackFileExplorer>

@@ -1,22 +1,48 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-  webpack: (config) => {
-    config.module.rules.push({
-      test: /.*\.js$ /,
-      loader: 'worker-loader',
-      options: {
-        name: 'static/[hash].worker.js',
-        publicPath: '/_next/'
-      }
-    })
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
+const withTM = require('next-transpile-modules')([
+	// `monaco-editor` isn't published to npm correctly: it includes both CSS
+	// imports and non-Node friendly syntax, so it needs to be compiled.
+	'monaco-editor'
+])
 
-    // Overcome Webpack referencing `window` in chunks
-    config.output.globalObject = `(typeof self !== 'undefined' ? self : this)`
+module.exports = withTM({
+	webpack: config => {
+		const rule = config.module.rules
+			.find(rule => rule.oneOf)
+			.oneOf.find(
+				r =>
+					// Find the global CSS loader
+					r.issuer && r.issuer.include && r.issuer.include.includes('_app')
+			)
+		if (rule) {
+			rule.issuer.include = [
+				rule.issuer.include,
+				// Allow `monaco-editor` to import global CSS:
+				/[\\/]node_modules[\\/]monaco-editor[\\/]/
+			]
+		}
 
-    return config
-  }
-}
+		// config.output = {
+		// 	globalObject: 'this'
+		// }
 
-module.exports = nextConfig
+		config.plugins.push(
+			new MonacoWebpackPlugin({
+				languages: [
+					'json',
+					'markdown',
+					'css',
+					'typescript',
+					'javascript',
+					'html',
+					'graphql',
+					'python',
+					'scss',
+					'yaml'
+				],
+				filename: 'static/[name].worker.js'
+			})
+		)
+		return config
+	}
+})
