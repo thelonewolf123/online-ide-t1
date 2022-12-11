@@ -14,7 +14,8 @@ const MonacoEditorReact = () => {
 	} = useSandpack()
 
 	useEffect(() => {
-		if (!editorRef.current || !monacoInstance.current || !activeFile) return
+		if (!editorRef.current || !monacoInstance.current || !activeFile || !files[activeFile])
+			return
 		const monacoUri = monacoInstance.current.Uri.file(activeFile)
 		const existModel = monacoInstance.current.editor.getModel(monacoUri)
 		const model = existModel
